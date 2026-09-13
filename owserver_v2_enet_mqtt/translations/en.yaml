@@ -1,0 +1,88 @@
+configuration:
+  url:
+    name: OW-SERVER XML URL
+    description: >-
+      Full URL to the OW-SERVER details.xml file, for example
+      http://192.168.178.10/details.xml. HTTP and HTTPS are supported.
+  poll_interval:
+    name: Poll interval (seconds)
+    description: >-
+      How often the XML file is fetched and published, in seconds.
+      Minimum is 1 second. Default is 10.
+  http_timeout:
+    name: HTTP timeout (seconds)
+    description: >-
+      Maximum time to wait for a single HTTP request before it is
+      considered failed.
+  http_retries:
+    name: HTTP attempts
+    description: >-
+      Total number of HTTP attempts per poll cycle (initial request plus
+      retries). If all attempts fail, affected values are marked as
+      unavailable. Default is 3.
+  http_username:
+    name: HTTP username (optional)
+    description: >-
+      Username for HTTP basic authentication. Leave empty if the OW-SERVER
+      XML is not password protected.
+  http_password:
+    name: HTTP password (optional)
+    description: >-
+      Password for HTTP basic authentication. Only used when an HTTP
+      username is set.
+  topic_prefix:
+    name: MQTT topic prefix
+    description: >-
+      Base prefix for all MQTT state topics, for example owserver.
+      Global values are published under <prefix>/status/... and device
+      values under <prefix>/<romid>/...
+  discovery_prefix:
+    name: MQTT discovery prefix
+    description: >-
+      Home Assistant MQTT discovery prefix. This must match the discovery
+      prefix configured in Home Assistant. Default is homeassistant.
+  mqtt_discovery:
+    name: Enable MQTT discovery
+    description: >-
+      When enabled, entities are created automatically in Home Assistant
+      via MQTT discovery. When disabled, only raw values are published.
+  retained:
+    name: Retain MQTT messages
+    description: >-
+      When enabled, the broker keeps the last value so Home Assistant sees
+      the current state immediately after a restart. Recommended.
+  device_name:
+    name: Device name (optional)
+    description: >-
+      Name for the Home Assistant device. If left empty, the OW-SERVER
+      host name is used, otherwise the device name from the XML, otherwise
+      OW-SERVER.
+  mqtt_host:
+    name: MQTT host (optional)
+    description: >-
+      Override the MQTT broker host. Leave empty to use the Home Assistant
+      Mosquitto add-on provided through the MQTT service.
+  mqtt_port:
+    name: MQTT port
+    description: >-
+      MQTT broker port. Default is 1883, or 8883 when TLS is used.
+  mqtt_username:
+    name: MQTT username (optional)
+    description: >-
+      Override the MQTT username. Leave empty to use the credentials
+      provided by the Home Assistant MQTT service.
+  mqtt_password:
+    name: MQTT password (optional)
+    description: >-
+      Override the MQTT password. Leave empty to use the credentials
+      provided by the Home Assistant MQTT service.
+  mqtt_tls:
+    name: Use MQTT TLS
+    description: >-
+      Enable an encrypted TLS connection to the MQTT broker. Remember to
+      set the matching TLS port, usually 8883.
+  log_level:
+    name: Log level
+    description: >-
+      Verbosity of the add-on log. Use DEBUG for troubleshooting. Normal
+      per-cycle success messages are only shown at DEBUG level.

@@ -1,0 +1,48 @@
+name: OW-SERVER v2 Enet MQTT
+version: "1.0.6"
+slug: owserver_v2_enet_mqtt
+description: Reads an OW-SERVER details.xml and publishes values via MQTT with Home Assistant Discovery.
+url: https://github.com/der-mac/hassio-app-owserver_v2-enet-mqtt
+arch:
+  - aarch64
+  - amd64
+  - armv7
+init: false
+services:
+  - mqtt:want
+options:
+  url: "http://192.168.178.10/details.xml"
+  poll_interval: 10
+  http_timeout: 10
+  http_retries: 3
+  http_username: ""
+  http_password: ""
+  topic_prefix: "owserver"
+  discovery_prefix: "homeassistant"
+  mqtt_discovery: true
+  retained: true
+  device_name: ""
+  mqtt_host: ""
+  mqtt_port: 1883
+  mqtt_username: ""
+  mqtt_password: ""
+  mqtt_tls: false
+  log_level: "INFO"
+schema:
+  url: url
+  poll_interval: int(1,)
+  http_timeout: int(1,)
+  http_retries: int(1,)
+  http_username: str?
+  http_password: password?
+  topic_prefix: str
+  discovery_prefix: str
+  mqtt_discovery: bool
+  retained: bool
+  device_name: str?
+  mqtt_host: str?
+  mqtt_port: port
+  mqtt_username: str?
+  mqtt_password: password?
+  mqtt_tls: bool
+  log_level: list(DEBUG|INFO|WARNING|ERROR)

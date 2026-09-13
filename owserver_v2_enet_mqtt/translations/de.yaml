@@ -1,0 +1,92 @@
+configuration:
+  url:
+    name: OW-SERVER-XML-URL
+    description: >-
+      Vollständige URL zur details.xml des OW-SERVERs, zum Beispiel
+      http://192.168.178.10/details.xml. HTTP und HTTPS werden unterstützt.
+  poll_interval:
+    name: Abfrageintervall (Sekunden)
+    description: >-
+      Wie oft die XML-Datei abgerufen und veröffentlicht wird, in Sekunden.
+      Minimum ist 1 Sekunde. Standard ist 10.
+  http_timeout:
+    name: HTTP-Zeitlimit (Sekunden)
+    description: >-
+      Maximale Wartezeit für eine einzelne HTTP-Anfrage, bevor sie als
+      fehlgeschlagen gilt.
+  http_retries:
+    name: HTTP-Versuche
+    description: >-
+      Gesamtzahl der HTTP-Versuche pro Abfragezyklus (erste Anfrage plus
+      Wiederholungen). Schlagen alle Versuche fehl, werden betroffene Werte
+      als nicht verfügbar markiert. Standard ist 3.
+  http_username:
+    name: HTTP-Benutzername (optional)
+    description: >-
+      Benutzername für HTTP-Basic-Authentifizierung. Leer lassen, wenn die
+      OW-SERVER-XML nicht passwortgeschützt ist.
+  http_password:
+    name: HTTP-Passwort (optional)
+    description: >-
+      Passwort für HTTP-Basic-Authentifizierung. Wird nur verwendet, wenn
+      ein HTTP-Benutzername gesetzt ist.
+  topic_prefix:
+    name: MQTT-Topic-Präfix
+    description: >-
+      Basis-Präfix für alle MQTT-State-Topics, zum Beispiel owserver.
+      Globale Werte werden unter <präfix>/status/... veröffentlicht,
+      Gerätewerte unter <präfix>/<romid>/...
+  discovery_prefix:
+    name: MQTT-Discovery-Präfix
+    description: >-
+      Discovery-Präfix von Home Assistant. Muss mit dem in Home Assistant
+      konfigurierten Discovery-Präfix übereinstimmen. Standard ist
+      homeassistant.
+  mqtt_discovery:
+    name: MQTT-Discovery aktivieren
+    description: >-
+      Wenn aktiviert, werden Entitäten in Home Assistant automatisch per
+      MQTT-Discovery angelegt. Wenn deaktiviert, werden nur die reinen Werte
+      veröffentlicht.
+  retained:
+    name: MQTT-Nachrichten dauerhaft speichern
+    description: >-
+      Wenn aktiviert, speichert der Broker den letzten Wert, sodass Home
+      Assistant nach einem Neustart sofort den aktuellen Zustand sieht.
+      Empfohlen.
+  device_name:
+    name: Gerätename (optional)
+    description: >-
+      Name für das Home-Assistant-Gerät. Wenn leer, wird der Hostname des
+      OW-SERVERs verwendet, sonst der Gerätename aus der XML, sonst
+      OW-SERVER.
+  mqtt_host:
+    name: MQTT-Host (optional)
+    description: >-
+      Überschreibt den MQTT-Broker-Host. Leer lassen, um den über den
+      MQTT-Dienst bereitgestellten Mosquitto-Broker von Home Assistant zu
+      verwenden.
+  mqtt_port:
+    name: MQTT-Port
+    description: >-
+      Port des MQTT-Brokers. Standard ist 1883, bei TLS üblicherweise 8883.
+  mqtt_username:
+    name: MQTT-Benutzername (optional)
+    description: >-
+      Überschreibt den MQTT-Benutzernamen. Leer lassen, um die vom
+      MQTT-Dienst bereitgestellten Zugangsdaten zu verwenden.
+  mqtt_password:
+    name: MQTT-Passwort (optional)
+    description: >-
+      Überschreibt das MQTT-Passwort. Leer lassen, um die vom MQTT-Dienst
+      bereitgestellten Zugangsdaten zu verwenden.
+  mqtt_tls:
+    name: MQTT-TLS verwenden
+    description: >-
+      Aktiviert eine verschlüsselte TLS-Verbindung zum MQTT-Broker. Denke
+      daran, den passenden TLS-Port zu setzen, üblicherweise 8883.
+  log_level:
+    name: Protokollstufe
+    description: >-
+      Ausführlichkeit des Add-on-Protokolls. DEBUG hilft bei der
+      Fehlersuche. Erfolgsmeldungen pro Zyklus erscheinen nur bei DEBUG.
